@@ -1,0 +1,875 @@
+<html>
+<head>
+<title>Spojiti:Documentation</title>
+
+<style>
+
+body{
+  font-family:sans-serif;
+} 
+
+
+.codetable{
+  width:94%;
+  margin-left:3%;
+  border:1px solid rgb(200,200,200);
+  border-collapse:0px;
+}
+
+.codetable td{
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 1px solid rgb(200,200,200);
+  background-color:rgb(255,255,255); 
+  color:rgb(0,0,0);
+  border-radius:5px;
+  font-size:17px;
+}
+
+
+.typicaltable{
+  width:94%;
+  margin-left:3%;
+  border:1px solid rgb(200,200,200);
+  border-collapse:0px;
+}
+
+.typicaltable td{
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border: 1px solid rgb(200,200,200);
+  background-color: rgb(250,250,250);
+  text-align:center;
+  border-radius:5px;
+}
+
+.typicaltable th{
+   background-color: rgb(75,75,75);
+   color: rgb(245,245,245);
+   padding-top:10px;
+   padding-bottom:10px;
+   border-radius:5px;
+ }
+
+.typicaldiv{
+}
+
+caption{
+  font-size:22px;
+  background-color : rgb(0,0,0);
+  color: rgb(245,245,245);
+  padding-top:7px;
+  padding-bottom:7px;
+}
+
+.introdiv{
+  width:92%;
+  margin-top:35px;
+  font-size: 19px;
+  margin-left:4%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class='introdiv'  id='about'>
+<b>Spojiti</b> is an application programming interface written purely in java that allows creation 
+and management of socket connections among different devices on the same local network.<br>Spojiti can be used as a backbone 
+to any multiplayer game or multiuser app.
+</div>
+
+
+<div class='typicaldiv'  id='important_classes' style='margin-top:35px;'>
+<table class='typicaltable'>
+<caption>Classes</caption>
+<tr>
+<th>Class name</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td><b>ConnectionsFactory<b></td>
+<td>
+The main class which controls all the actions and needs to be instantiated to use Spojiti.
+ ConnectionsFactory gives the options to search for devices, connect to and disconnect 
+ from various devices and provides listeners to keep track of connected devices and data 
+ transactions.
+</td>
+</tr>
+
+<tr>
+<td><b>ConnectionsFactoryConstants</b></td>
+<td>
+<b>Provides various configurational constants</b><br>
+
+<table class='typicaltable'>
+<tr>
+<th>Constant name</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td><b>SPOJITI_MODE_IO_TCP_ONLY</b></td>
+<td>
+Specifies tcp only I/O mode.
+</td>
+</tr>
+
+<tr>
+<td><b>SPOJITI_MODE_IO_TCP_UDP</b></td>
+<td>
+Specifies tcp and udp I/O mode.
+</td>
+</tr>
+
+<tr>
+<td><b>SPOJITI_MODE_NIO</b></td>
+<td>
+Specifies tcp only non-blocking I/O mode.
+</td>
+</tr>
+
+<tr>
+<td><b>IO_BOUND_THREAD_POOL_LIMIT_MAX</b></td>
+<td>
+Specifies limit on maximum I/O threads that can exist simultaneously. Change this only 
+if you know what you are doing! Default is 100.
+</td>
+</tr>
+
+<tr>
+<td><b>PORT_START</b></td>
+<td>
+Specifies the starting port of the range of ports which are tried to set connection with. 
+Default value is 2000.
+</td>
+</tr>
+
+<tr>
+<td><b>PORT_END</b></td>
+<td>
+Specifies the ending port of the range of ports which are tried to set connection with. 
+Default value is 2002. So by default ports 2000 to 2002 are used for connections.
+</td>
+</tr>
+
+
+</table>
+
+</td>
+</tr>
+
+<tr>
+<td><b>Device</b></td>
+<td>
+<b>This class represents a device on the network. Various methods it contains are:</b><br>
+
+
+<table class='typicaltable'>
+<tr><th>Return Type</th><th>Description</th></tr>
+
+<tr>
+<td><b>String</b></td>
+<td>
+<b>get_device_name()</b><br>
+Returns the name of the device.
+</td>
+</tr>
+
+<tr>
+<td><b>String</b></td>
+<td>
+<b>get_ip_address()</b><br>
+Returns the ip address of the device.
+</td>
+</tr>
+
+<tr>
+<td><b>InetAddress</b></td>
+<td>
+<b>get_ip_as_inetaddress()</b><br>
+Returns the ip address of the device as InetAddress object.
+</td>
+</tr>
+
+</table>
+
+
+</td>
+</tr>
+
+</table>
+</div>
+
+<div class='typicaldiv'  id='diffmodes' style='margin-top:35px;'>
+<table class='typicaltable'>
+<caption>Different modes Spojiti can be used in</caption>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td><b>SPOJITI_MODE_IO_TCP_ONLY</b></td>
+<td>This mode allows only TCP using stream based I/O in java.</td>
+</tr>
+
+<tr>
+<td><b>SPOJITI_MODE_IO_TCP_UDP</b></td>
+<td>This mode allows both TCP and UDP using stream based I/O in java.</td>
+</tr>
+
+<tr>
+<td><b>SPOJITI_MODE_IO_TCP_ONLY</b></td>
+<td>This mode allows only TCP using channel based non-blocking I/O in java.</td>
+</tr>
+
+</table>
+</div>
+
+<div class='typicaldiv'  id='constructor_summary' style='margin-top:35px;'>
+<table class='typicaltable'>
+<caption>Constructor Summary</caption>
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>For android devices</b>
+</td>
+</tr>
+
+<tr>
+<td>
+<b>public ConnectionsFactory(Context context, Integer mode)
+            throws IOException, FreePortUnavailableException </b>
+<br>
+context | android activity context
+<br>
+mode | ConnectionsFactory modes given above
+</td>
+</tr>
+
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>For PCs</b>
+</td>
+</tr>
+
+<tr>
+<td>
+<b>public ConnectionsFactory(Integer mode, Boolean isHotspotEnabled)
+            throws IOException, FreePortUnavailableException </b>
+<br>
+mode | ConnectionsFactory modes given above
+<br>
+isHotspotEnabled | whether or not the device is the network source
+</td>
+</tr>
+
+</table>
+</div>
+
+<div class='typicaldiv'  id='method_description' style='margin-top:35px;'>
+<table class='typicaltable'>
+<caption>Method Summary</caption>
+<tr>
+<th>Return type</th>
+<th>Method and Description</th>
+</tr>
+
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>Searching and connection management</b>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>search_for_devices(Boolean arponly)</b><br>
+Starts a comprehensive search for the devices in the network. All the devices 
+running Spojiti should show up through the onDevicesChanged listener.<br>
+arponly | when set to true searching will be restricted to ARP cache of the device.
+ It is suitable if the hotspot creator(router) is to be involved in the mesh.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>connect_to_device(String ipaddress)</b><br>
+Tries to connect to the device(if any) with the given ipaddress. If 
+successful the updated connected devices list shall come up in the 
+onDevicesChanged listener.<br>
+ipadress | the ipaddress of the device to connect to.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>disconnect(Device device)</b><br>
+Disconnects the provided device if it was connected.<br>
+device | the device to disconnect.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>disconnect(String ipaddress)</b><br>
+Disconnects the device(if any) with provided ipaddress if it was connected.<br>
+ipaddress | the ip address of the device to disconnect.
+</td>
+</tr>
+
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>disconnectAll()</b><br>
+Disconnects all the connected devices.
+</td>
+</tr>
+
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>Sending data</b>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>broadcast_tcp(Object object)</b><br>
+Broadcasts the provided java object(should be serializable) via TCP.<br>
+object | the java object to be broadcasted.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>broadcast_udp(Object object) throws UnsupportedFeatureException</b><br>
+Broadcasts the provided java object(should be serializable) via UDP.<br>
+object | the java object to be broadcasted.<br>
+<b>throws UnsupportedFeatureException in SPOJITI_MODE_IO_TCP_ONLY and SPOJITI_MODE_NIO 
+modes.</b>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>send_tcp(Object object, String ipaddress)</b><br>
+Sends the provided java object(should be serializable) via TCP to the device(if any) with 
+the provided ipaddress.<br>
+object | the java object to be sent.<br>
+ipaddress | the ipaddress of the destination device.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>send_tcp(Object object, Device device)</b><br>
+Sends the provided java object(should be serializable) via TCP to the provided device(if any).<br>
+object | the java object to be sent.<br>
+device | the destination device.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>send_udp(Object object, String ipaddress) throws UnsupportedFeatureException</b><br>
+Sends the provided java object(should be serializable) via UDP to the device(if any) with 
+the provided ipaddress.<br>
+object | the java object to be sent.<br>
+ipaddress | the ipaddress of the destination device.<br>
+<b>throws UnsupportedFeatureException in SPOJITI_MODE_IO_TCP_ONLY and SPOJITI_MODE_NIO 
+modes.</b>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>send_udp(Object payload, Device device) throws UnsupportedFeatureException</b><br>
+Sends the provided java object(should be serializable) via UDP to the device(if any) with 
+the provided ipaddress.<br>
+object | the java object to be sent.<br>
+device | the destination device.<br>
+<b>throws UnsupportedFeatureException in SPOJITI_MODE_IO_TCP_ONLY and SPOJITI_MODE_NIO 
+modes.</b>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>Setters</b>
+</td>
+</tr>
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>set_datagram_buffer_size(Integer size)</b><br>
+Sets the datagram buffer size for UDP.<br>
+size | the specified size in bytes.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>set_nioBytebuffer_size(Integer size)</b><br>
+Sets the size of the ByteBuffer used in SPOJITI_MODE_NIO.<br>
+size | the specified size in bytes.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>set_endpoint_identifier(String str)</b><br>
+Sets the device name as visible by other devices.<br>
+str | the name to be used.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>set_receive_object_type_token(final Class<?> datatype)</b><br>
+To receive objects in the SPOJITI_MODE_NIO, the specific class type needs to be 
+registered with the API. This method registers the provided ClassType as the default 
+object that can be be received replacing the previous registration.<br>
+datatype | the class type specifies.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>auto_set_devicename()</b><br>
+<b>Useful only for PCs version.</b><br>
+This method sets the device name to default name of the device on the network.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>reset_output_stream(Device device)</b><br>
+Resets all the output stream for the specified device.<br>
+device | the specified device.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>reset_all_output_streams()</b><br>
+Resets the output stream for all the devices<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>Getters</b>
+</td>
+</tr>
+
+<tr>
+<td>
+<b>ConcurrentHashMap&lt;String, Device&gt;</b>
+</td>
+
+<td>
+<b>get_connected_devices()</b><br>
+Returns the list of all the apparently connected devices which must be 
+genuine unless some device malfunctioned. The list is returned as a 
+ConcurrentHashMap<String, Device> which is the ip address to device object mapping.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>boolean</b>
+</td>
+
+<td>
+<b>is_connected_to(Device device)</b><br>
+Returns true if the specified device is connected. Please note that the device is not 
+actually pinged only lists are checked. The list however is itself updated each time 
+a device is connected or disconnected barring the case when the other device shuts down 
+abnormally.<br>
+device | the device to be checked.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>boolean</b>
+</td>
+
+<td>
+<b>is_connected_to(String ipaddress)</b><br>
+Behaves simliar to is_connected_to(Device device) considering ipaddress to be the 
+ip address of the device queried for connectivity.<br>
+ipaddress | the ip address of the device to be checked.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>boolean</b>
+</td>
+
+<td>
+<b>is_self_ipaddress(String ipaddress)</b><br>
+Returns true if the specified ipaddress is the self ip address.<br>
+ipaddress | the ip address to be checked.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>HashSet&lt;String&gt;</b>
+</td>
+
+<td>
+<b>get_self_ip_addresses()</b><br>
+Returns the list of all ipaddresses of the device as a a HashSet<String>.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>int</b>
+</td>
+
+<td>
+<b>get_nioBytebuffer_size()</b><br>
+Returns the current size of ByteBuffer used in SPOJITI_MODE_NIO.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>int</b>
+</td>
+
+<td>
+<b>get_datagram_buffer_size()</b><br>
+Returns the current datagram buffer size used in UDP.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>boolean</b>
+</td>
+
+<td>
+<b>is_hotspot_creator()</b><br>
+Returns true if the device is the hotspot creator. This method simply returns the 
+value passed in the constructor in the case of PC version and in the android version 
+the decision is made in runtime.<br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>int</b>
+</td>
+
+<td>
+<b>getFactoryMode()</b><br>
+Returns the current factory mode among:<br>
+<b>SPOJITI_MODE_IO_TCP_ONLY</b><br>
+<b>SPOJITI_MODE_IO_TCP_UDP</b><br>
+<b>SPOJITI_MODE_NIO</b><br>
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>Setting Listeners</b>
+</td>
+</tr>
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>setOnDataReceivedListener(onDataReceivedListener listener)</b><br>
+Sets the onDataReceivedListener as listener. The onDataReceived method of this listener 
+is fired each time data is received from any device.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>setOnDevicesChangedListener(onDevicesChangedListener listener)</b><br>
+Sets the onDevicesChangedListener as listener. The onDevicesChanged method of this listener 
+is fired each time some device is connected or disconnected giving a comprehensive list 
+of connected devices at that particular instant.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>setOnMasterFoundListener(onMasterFoundListener listener)</b><br>
+Sets the onMasterFoundListener as listener. The onMasterFound method of this listener 
+is fired each time broadcast_who_is_master_message() method is fired.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+
+<tr>
+<td colspan='2' class='headrow' style='background-color:rgb(50,142,200); color:rgb(255,255,255);padding-top:7px;padding-bottom:7px;'>
+<b>Others</b>
+</td>
+</tr>
+
+<tr>
+<td>
+<b>void</b>
+</td>
+
+<td>
+<b>broadcast_who_is_master_message()</b><br>
+On calling this method the master responds with onMasterFoundListener using method 
+onMasterFound(Device device) where device is the master(router). 
+This method works only if the router is also involved in the mesh ie. the router is 
+also using Spojiti.
+</td>
+</tr>
+
+<!-- --------------------------------------- -->
+
+</table>
+</div>
+
+<div class='typicaldiv'  id='listeners_description' style='margin-top:35px;margin-bottom:35px;'>
+<table class='typicaltable'>
+<caption>Listener description</caption>
+<tr>
+<th>Listeners</th>
+<th>Methods in the listener</th>
+</tr>
+
+<tr>
+<td><b>onDataReceivedListener</b></td>
+<td>
+<b>onDataReceived(Object payload, Device endpoint)</b><br>
+Fired when Object payload is received from Device endpoint.
+</td>
+</tr>
+
+<tr>
+<td><b>onDevicesChangedListener</b></td>
+<td>
+<b>onDevicesChanged(ConcurrentHashMap<String, Device> established_devices)</b><br>
+Fired when devices change anyhow. established_devices contains the new list of 
+connected devices with string being the ip address and established_devices as Device object.
+</td>
+</tr>
+
+<tr>
+<td><b>onMasterFoundListener</b></td>
+<td>
+<b>onMasterFound(Device device)</b><br>
+Fired when master(router) responds(if at all) when broadcast_who_is_master_message() is 
+called.
+</td>
+</tr>
+
+</table>
+</div>
+
+<div class='typicaldiv'  id='codesamples' style='margin-top:35px;margin-bottom:35px;'>
+<table class='codetable'>
+<caption>Sample code</caption>
+<tr>
+<td>
+
+<pre>
+<code>
+
+	try {
+	
+            final ConnectionsFactory factory = new ConnectionsFactory(ConnectionsFactoryConstants.SPOJITI_MODE_IO_TCP_UDP,
+                    true);
+
+            factory.setOnDevicesChangedListener(new ConnectionsFactory.onDevicesChangedListener() {
+                @Override
+                public void onDevicesChanged(ConcurrentHashMap<String, Device> established_devices) {
+                    Iterator it = established_devices.entrySet().iterator();
+                    while (it.hasNext()) {
+                        Map.Entry pair = (Map.Entry) it.next();
+                        System.out.println(pair.getKey() + " : " + ((Device) pair.getValue()).get_device_name());
+                    }
+                }
+            });
+
+            factory.setOnDataReceivedListener(new ConnectionsFactory.onDataReceivedListener() {
+                @Override
+                public void onDataReceived(Object payload, Device endpoint) {
+                    System.out.println(endpoint.get_ip_address() + " : " + payload.toString());
+                }
+            });
+
+            factory.search_for_devices(true);
+
+        } catch (FreePortUnavailableException | IOException fexc) {
+        }
+
+
+</code>
+</pre>
+
+</td>
+</tr>
+</table>
+</div>
+
+</body>
+
+</html>
